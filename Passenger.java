@@ -21,11 +21,11 @@ public Passenger(int myStart, int myDest){
 
 //methods
 
-public int getStartPos(){
+public int getStartPass(){
     return start;
 }
 
-public int getDestPos(){
+public int getDestPass(){
     return dest;
 }
 
