@@ -21,9 +21,10 @@ public Road(int myNumPassengers,int myNumCars, int myNumStations){
     numStations = myNumStations;
     
     
-    createPassengers();//to do
+    createPassengers();
+    createCars(); 
     createStations(); //to do
-    createCars(); //to do
+    
 }
 
 
@@ -52,9 +53,60 @@ public void updateCars(){ //this moved the car along, the actull intricate stuff
 }
 
 
+public void createPassengers(){
+    for(int i = 0; i < numPassengers; i++){ //for all the passengers
+        int start = (int)(Math.random() * numStations); //put them somehwere amoung the stations
+        int dest = (int)(Math.random() * numStations); //put thier goal osmehwere amoung the stations
+        
+        Passenger a = new Passenger(start, dest);
+        TotPass.add(a);
+    
+        for(int j = 0; j < road.size(); j++){ //for all the stations
+        for(int k = 0; k < TotPass.size(); k++){ //for all the passengers 
+        if(TotPass.get(k).getStartPass() == road.get(j).getStationID()){ //if the start == the corrct sttion id
+            road.get(j).addPtoPPLWaiting(TotPass.remove(k)); //add the person to the ppl waiting list at that station while also removing them from the totpass list, 2 for 1 speciall!!!!
+            k--; //for the idex error
+        }
+}
+}
+    }
+}
 
 
 
+public void createCars(){
+    for(int i = 0; i < numCars; i++){
+        int start = (int) (Math.random() * numStations);
+        int dest = (int) (Math.random() * numStations);
+        Car a = new Car(start,dest);
+        TotCar.add(a);
+    }
+    for(int j = 0; j < road.size(); j++){ //for all the stations
+        for(int k = 0; k < TotCar.size(); k++){ //for all the cars
+        if(TotCar.get(k).getLocC() == road.get(j).getStationID()){ //if the location of the car is the same as the station 
+            road.get(j).addCars(TotCar.remove(k)); //romove cars from the total cars and put it in the station
+            k--; //index
+            }
+        }
+        }
+    }
 
+    public void createStations(){
+        for(int i = 0; i < numStations; i++){//for all the stations
+            Station a = new Station();
+            road.add(a);
+        }
+    }
+
+
+
+    public String toString(){
+    String fin = "";
+    for(int i = 0; i < road.size(); i++){
+            fin += road.get(i).toString() + " ";
+        }
+    return fin;
+    }
+            
 
 }
