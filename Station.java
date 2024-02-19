@@ -37,6 +37,18 @@ public class Station {
             }
     }
     
+    public void emptyPassengers(){
+        for(int i = 0; i < cars.size(); i++){ //for all the cars...
+        int locationC = cars.get(i).getLocC(); //the cars location is
+            for(int j = 0; j < cars.get(i).getPassangerList().size(); j++){ //run through the list of passengers in the car
+            int DestPass = cars.get(i).getPassangerList().get(j).getDestPass(); //the passengers dest is
+                if(locationC == DestPass){ //if the location == the destination
+                    PPLwaiting.add(cars.get(i).getPassangerList().get(j)); //add the person to the ppl waiitng list
+                    cars.get(i).getPassangerList().remove(cars.get(i).getPassangerList().get(j)); //remove them from the car
+                }
+            }
+        }
+    }
     
 
 
