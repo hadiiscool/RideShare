@@ -7,22 +7,22 @@ public class Car {
     private static int idGen;
     private int idNum;
     private int location;
-    private int destinaton;
+    private int destination;
     private double balance;
     private boolean isMovingleft;
     private boolean isMovingright;
     private ArrayList<Passenger> people; 
     
     //constructors
-    public Car(int myLocation, int myDestinaton){
+    public Car(int myLocation, int myDestination){
         people = new ArrayList<Passenger>();
         location = myLocation;
-        destinaton = myDestinaton;
+        destination = myDestination;
         idNum = idGen;
         idGen++;
         
         balance = 0.0;
-        if(destinaton < location){
+        if(destination < location){
             isMovingleft = true;
             isMovingright = false;
         }
@@ -35,10 +35,70 @@ public class Car {
     //methods
 
     //getters
-    public ArrayList<Passenger> getpassangerlist(){
+    public ArrayList<Passenger> getPassangerList(){
         return people;//retnrs this array list, still need to add ppl to it
     }
 
+    public int getNumOfPass(){
+        int total = 0;
+        for(Passenger x : people){ //for each loop, no mutating required so this is fine
+            total++;
+        }
+    return total;
+    }
+
+    public int getID(){
+        return idNum;
+    }
+
+    public int getLocC(){
+        return location;
+    }
+    
+    public int getDestC(){
+        return destination;
+    }
+
+
+    public boolean getDirection(){
+        return isMovingleft; //when i need this Ill just write a if statemt, so this way i only need 1 varaible
+    }
+
+    //mutators
+
+public void addPassenger(Passenger x){
+    people.add(x);
+}
+
+public void changeLoc(){
+    if(getDirection() == true){ //if its going left...
+    location--;
+    }
+    else{
+    location++;
+    }
+}
+
+public void changeBal(){
+    int num = 0;
+    for(Passenger x : people){
+        num++;
+    }
+    balance += num;
+}
+    
+//printor
+public String printDirection(){
+    String fin = "";
+    
+    if(isMovingleft == true){
+        fin += "Left";
+    }
+    else{
+        fin += "Right";
+    }
+return fin;
+}
 }
 
    
