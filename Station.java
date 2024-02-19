@@ -49,7 +49,84 @@ public class Station {
             }
         }
     }
-    
 
+    public void loadPassengers(){
+        if(cars.size() > 0){ //need this check for some rzn
+        for(int i = 0; i < PPLwaiting.size(); i++){ //for all the ppl wiating
+            for(int j = 0; j < cars.size(); j++){ //for all the cars
+                if(cars.get(j).getNumOfPass() < 3){ //if the num of passengers is less then 3...
+                    if(cars.get(j).getDirection() == false){ //and the car is going right//
+                        if(PPLwaiting.get(i).getDestPass() > cars.get(j).getLocC()){ // and if the poeple in the car's desitnation is GREATOR then the cars location
+                            cars.get(j).addPassenger(PPLwaiting.remove(i)); //remove the passenger from the PPLwaiting list while also adding adding the passenger to the car. 2 for one mehtod special!!!
+                            i--; // to avoid index error
+                            break;// to avoid index error
+                        }
+    
+                    } else if(cars.get(j).getDirection() == true){ //ifs the car is going left
+                            if(PPLwaiting.get(i).getDestPass() < cars.get(j).getLocC()){ //if the persons destinagion is less then the cars position
+                                cars.get(j).addPassenger(PPLwaiting.remove(i)); //another 2 for one special
+                                i--;  //index error stuff
+                                break; //index error stuff
+                            }
+                    }
+                }
+            }
+        }
+    }
+}
+
+//getters
+public ArrayList<Car> getCars(){
+    return cars;
+}
+
+public int getStationID(){
+    return StationID;
+}
+
+//mutators
+public void addCars(Car x){
+    cars.add(x);
+}
+
+public void updateCars(){ //order mattters here
+    emptyPassengers();
+    elimCars();
+    loadPassengers();
+}
+
+//prints
+
+public String printCars(){
+    String fin = "";
+    for(int j = 0; j < cars.size(); j++){ //for all the cars
+        fin += cars.get(j).toString();
+    }
+
+    return fin;
+}
+
+
+public String printCompletedPassengers(){
+    String fin = "";
+    for(int j = 0; j < PPLwaiting.size(); j++){ //for all the pplwating
+        if(PPLwaiting.get(j).getDestPass() == StationID){ //if they are at correct station(which is also thier destination)
+            PPLwaiting.get(j).AtDest(); //say that they are at their destination
+        }
+    fin += PPLwaiting.get(j).toString(); //add these completed passengers to the string
+}
+return fin;
 
 }
+public String toString(){
+    
+return "StationID: " + StationID +  " completed Passengers" + printCompletedPassengers() + " Cars at Station[" + printCars() + "]";
+}
+
+}
+
+
+
+
+
+
