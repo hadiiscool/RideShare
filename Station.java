@@ -116,11 +116,12 @@ public String printCompletedPassengers(){
     fin += PPLwaiting.get(j).toString(); //add these completed passengers to the string
 }
 return fin;
-
 }
+
+
+
 public String toString(){
-    
-return "StationID: " + StationID +  " completed Passengers" + printCompletedPassengers() + " Cars at Station[" + printCars() + "]";
+return "StationID: " + StationID +  " Completed Passengers:" + printCompletedPassengers() + " Cars at Station:[" + printCars() + "]";
 }
 
 }

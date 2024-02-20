@@ -31,6 +31,13 @@ public Road(int myNumPassengers,int myNumCars, int myNumStations){
 
 //methods
 
+//need this
+public void run(){
+    for(int k = 0; k < road.size(); k++){
+        road.get(k).updateCars();
+    }
+    }
+
 public void updateCars(){ //this moved the car along, the actull intricate stuff is done in the update cars file in the station class
     for(int i = 0; i < road.size(); i++){ //for all the stations
         for(int j = 0; j < road.get(i).getCars().size(); j++){ //for all the cars at each station
