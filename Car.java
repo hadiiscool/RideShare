@@ -8,7 +8,7 @@ public class Car {
     private int idNum;
     private int location;
     private int destination;
-    private double balance;
+  
     private boolean isMovingleft;
     private boolean isMovingright;
     private ArrayList<Passenger> people; 
@@ -21,7 +21,7 @@ public class Car {
         idNum = idGen;
         idGen++;
         
-        balance = 0.0;
+        
         if(destination < location){
             isMovingleft = true;
             isMovingright = false;
@@ -79,13 +79,7 @@ public void changeLoc(){
     }
 }
 
-public void changeBal(){
-    int num = 0;
-    for(Passenger x : people){
-        num++;
-    }
-    balance += num;
-}
+
     
 //printor
 public String printDirection(){
@@ -98,6 +92,13 @@ public String printDirection(){
         fin += "Right";
     }
 return fin;
+
+}
+
+
+
+public String toString(){
+    return "[Car ID: " + idNum + " Direction: " + printDirection() + " ] ";
 }
 }
 

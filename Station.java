@@ -3,7 +3,7 @@ public class Station {
     //this is second-to-top in order of opperations, the road file will take into considersation overthing else
 
     //fields
-
+    public int balance; //so the road class can use this
     private ArrayList<Car> cars;
     private int StationID;
     private static int StationNumGen;
@@ -101,6 +101,7 @@ public String printCars(){
     String fin = "";
     for(int j = 0; j < cars.size(); j++){ //for all the cars
         fin += cars.get(j).toString();
+        fin += "";
     }
 
     return fin;
@@ -111,17 +112,28 @@ public String printCompletedPassengers(){
     String fin = "";
     for(int j = 0; j < PPLwaiting.size(); j++){ //for all the pplwating
         if(PPLwaiting.get(j).getDestPass() == StationID){ //if they are at correct station(which is also thier destination)
-            PPLwaiting.get(j).AtDest(); //say that they are at their destination
+            fin +=  PPLwaiting.get(j);
         }
-    fin += PPLwaiting.get(j).toString(); //add these completed passengers to the string
 }
 return fin;
 }
 
+public void addToBalance(){ 
+    for(int j = 0; j < PPLwaiting.size(); j++){ //for all the pplwating
+        if(PPLwaiting.get(j).getDestPass() == StationID){ //if they are at correct station(which is also thier destination)
+            balance++; //add 1 to the ballence
+        }
+}
+}
+public int getBalance(){ 
+    return balance;
+}
 
 
 public String toString(){
-return "StationID: " + StationID +  " Completed Passengers:" + printCompletedPassengers() + " Cars at Station:[" + printCars() + "]";
+return "StationID: " + StationID +  " Cars[" + printCars() + " ] " + " Completed Passengers: [ " + printCompletedPassengers() + "]\n" ;
+
+
 }
 
 }

@@ -50,7 +50,7 @@ public void AtDest(){
 }
 
 public String toString(){
-    return "Passenger ID: " + idNum + " Passenger Destination: " + dest+ " Are they at their Destination? " + isAtDest;
+    return "Passenger ID: " + idNum + " Passenger Destination: " + dest + " ";
 }
 
 }

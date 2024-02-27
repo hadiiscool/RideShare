@@ -2,6 +2,7 @@ import java.util.ArrayList;
 public class Road {
     
 //fields
+
 private ArrayList<Station> road; //the BIG BOY arraylist
 private int numPassengers;
 private int numCars;
@@ -21,10 +22,12 @@ public Road(int myNumPassengers,int myNumCars, int myNumStations){
     numStations = myNumStations;
     
     
-    createPassengers();
+     
+    createStations();
     createCars(); 
-    createStations(); //to do
+    createPassengers();
     
+     
 }
 
 
@@ -34,6 +37,7 @@ public Road(int myNumPassengers,int myNumCars, int myNumStations){
 //need this
 public void run(){
     for(int k = 0; k < road.size(); k++){
+        
         road.get(k).updateCars();
     }
     }
@@ -70,7 +74,7 @@ public void createPassengers(){
     
         for(int j = 0; j < road.size(); j++){ //for all the stations
         for(int k = 0; k < TotPass.size(); k++){ //for all the passengers 
-        if(TotPass.get(k).getStartPass() == road.get(j).getStationID()){ //if the start == the corrct sttion id
+        if(TotPass.get(k).getStartPass() == road.get(j).getStationID()){ //if the start == the correct sttion id while running throughh the loop...
             road.get(j).addPtoPPLWaiting(TotPass.remove(k)); //add the person to the ppl waiting list at that station while also removing them from the totpass list, 2 for 1 speciall!!!!
             k--; //for the idex error
         }
@@ -107,11 +111,20 @@ public void createCars(){
 
 
 
+
+
+
+
     public String toString(){
+    int bal = 0;
     String fin = "";
     for(int i = 0; i < road.size(); i++){
             fin += road.get(i).toString() + " ";
+            road.get(i).addToBalance(); //add to balance for each station
+            bal += road.get(i).getBalance();
         }
+        fin += "balance: " + bal + " ";
+    
     return fin;
     }
             
